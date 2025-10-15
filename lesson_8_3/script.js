@@ -1,4 +1,4 @@
-function loop() {
+function numberLoop() {
     let number;
     let i = 1;
     while (i <= 10) {
@@ -9,4 +9,4 @@ function loop() {
     console.log(number);
 }
 
-loop();
+numberLoop();
