@@ -1,11 +1,11 @@
 function Company(departmentsAndEmployees) {
     this.departmentsAndEmployees = departmentsAndEmployees;
-    this.number = 0;
+    this.result = 0;
 
     this.getSalarySum = (object = this.departmentsAndEmployees) => {
         for (let key in object) {
             if (Array.isArray(object[key])) {
-                this.number += object[key].map((obj) => obj.salary).reduce((a, b) => a + b);
+                this.result += object[key].map((obj) => obj.salary).reduce((a, b) => a + b);
             }
             if (typeof object === 'object' && !Array.isArray(object) && object !== null) {
                 // Рекурсивно переходим к след. объекту
@@ -13,7 +13,7 @@ function Company(departmentsAndEmployees) {
             }
         }
 
-        return this.number;
+        return this.result;
     }
 }
 
