@@ -5,7 +5,7 @@ function Company(departmentsAndEmployees) {
     this.getSalarySum = (object = this.departmentsAndEmployees) => {
         for (let key in object) {
             if (Array.isArray(object[key])) {
-                this.result += object[key].map((obj) => obj.salary).reduce((a, b) => a + b);
+                this.result += object[key].reduce((accumulate, currentValue) => accumulate + currentValue.salary, 0);
             }
             if (typeof object === 'object' && !Array.isArray(object) && object !== null) {
                 // Рекурсивно переходим к след. объекту
