@@ -13,7 +13,7 @@ for (let i = 2; i <= 10; i++) {
     pythagorasTable.result.push(numbers);
 }
 
-pythagorasTable.result.unshift([1, ...pythagorasTable.numeration]);
+pythagorasTable.result.unshift(['', ...pythagorasTable.numeration]);
 
 const tableById = document.querySelector('#table');
 const createdTable = document.createElement('table');
