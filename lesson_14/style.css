@@ -1,0 +1,60 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+}
+
+#slider-image {
+    max-width: 1000px;
+}
+
+#slider-control-top {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#slider-control-bottom {
+    display: flex;
+    column-gap: 3px;
+}
+
+.pointControl {
+    width: 15px;
+    height: 15px;
+    background-color: #C4C4C4;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.pointControl:hover {
+    background-color: #A8A8A8;
+}
+
+.prev {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.prev:disabled {
+    background: #CCCCCC;
+}
+
+.next {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.next:disabled {
+    background: #CCCCCC;
+}
