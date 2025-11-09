@@ -41,6 +41,7 @@ const getPreparedLiList = (todo) => {
 }
 
 const todoWrapper = document.querySelector(".js--todos-wrapper");
+const form = document.querySelector(".js--form");
 
 const createHTMLTodo = (todo) => {
     const liElementList = getPreparedLiList(todo);
@@ -78,8 +79,6 @@ const updateHTMLTodo = (todo) => {
             .forEach((element) => element.remove());
     }
 };
-
-const form = document.querySelector(".js--form");
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
