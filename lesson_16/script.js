@@ -18,7 +18,7 @@ function Student(firstName, lastName, yearOfBirth) {
             this.attendence.push(true);
             return;
         }
-        alert("Не можна додати більше 25 позначок!");
+        console.log("Не можна додати більше 25 позначок!");
     }
 
     this.setAbsent = () => {
@@ -26,7 +26,7 @@ function Student(firstName, lastName, yearOfBirth) {
             this.attendence.push(false);
             return;
         }
-        alert("Не можна додати більше 25 позначок!");
+        console.log("Не можна додати більше 25 позначок!");
     }
 
     this.summary = () => {
