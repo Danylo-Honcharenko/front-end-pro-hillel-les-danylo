@@ -8,8 +8,12 @@ class WeatherApi {
         url.searchParams.set("lang", "uk");
         url.searchParams.set("appid", "10a064de792666535133f2df98c8e5bf");
 
-        const response = await fetch(url.toString());
-        return response.json();
+        try {
+            const response = await fetch(url.toString());
+            return response.json();
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
@@ -26,8 +30,7 @@ const setDataToHTML = () => {
             desc.textContent = info.weather[0].description;
             restInfo[0].textContent = restInfo[0].textContent.replace("...",info.main.feels_like);
             restInfo[1].textContent = restInfo[1].textContent.replace("...", info.wind.speed);
-        })
-        .catch(err => console.log(err));
+        });
 }
 
 setDataToHTML();
