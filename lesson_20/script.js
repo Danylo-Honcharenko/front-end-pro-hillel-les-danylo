@@ -13,18 +13,18 @@ let todo = [
 
 const getPreparedLiList = (todo) => {
     return todo.map((todo) => {
-        const li = document.createElement("li");
-        const input = document.createElement("input");
-        const span = document.createElement("span");
-        const button = document.createElement("button");
+        const li = $('<li></li>');
+        const input = $("<input>");
+        const span = $("<span></span>");
+        const button = $("<button></button>");
 
-        $(li).addClass("todo-item");
-        $(li).addClass("bg-light");
-        li.dataset.todoId = todo.id;
+        li.addClass("todo-item");
+        li.addClass("bg-light");
+        li.attr("data-todo-id", todo.id);
 
-        $(li).hover(() => $(li).addClass("bg-body-secondary"), () => $(li).removeClass("bg-body-secondary"));
+        li.hover(() => li.addClass("bg-body-secondary"), () => li.removeClass("bg-body-secondary"));
 
-        $(li).click((event) => {
+        li.click((event) => {
             if ($(event.target).hasClass("todo-item__description")) {
                 const text = $(event.target).text();
                 $("#exampleModal").show();
@@ -32,27 +32,27 @@ const getPreparedLiList = (todo) => {
             }
         });
 
-        input.type = "checkbox";
-        input.name = "text";
-        $(input).text("!");
-        $(input).addClass("form-check-input");
+        input.attr("type", "checkbox");
+        input.attr("name", "text");
+        input.text("!");
+        input.addClass("form-check-input");
 
-        $(span).addClass("todo-item__description");
-        $(span).text(todo.text);
+        span.addClass("todo-item__description");
+        span.text(todo.text);
 
-        $(button).addClass("todo-item__delete");
-        $(button).addClass("btn");
-        $(button).addClass("btn-danger");
-        $(button).text("Видалити");
+        button.addClass("todo-item__delete");
+        button.addClass("btn");
+        button.addClass("btn-danger");
+        button.text("Видалити");
 
         if (todo.done) {
-            $(li).addClass("bg-success-subtle");
-            input.checked = true;
+            li.addClass("bg-success-subtle");
+            input.attr("checked", true);
         }
 
-        li.appendChild(input);
-        li.appendChild(span);
-        li.appendChild(button);
+        li.append(input);
+        li.append(span);
+        li.append(button);
 
         return li;
     });
@@ -86,10 +86,10 @@ $(window).on("DOMContentLoaded", () => {
 // Обновление элементов на странице (удалить, добавить) подразумевает сравнение двух массивов
 // массив ID элементов полученных из localStorage (или из массива todo) и массива ID элементов на странице.
 const updateHTMLTodo = (todo) => {
-    const liList = Array.from($(".js--todos-wrapper").children());
+    const liList = $(".js--todos-wrapper").children().get();
 
     const todoIds = todo.map((element) => element.id);
-    const htmlTodoIds = liList.map((li) => Number(li.dataset.todoId));
+    const htmlTodoIds = liList.map((li) => Number($(li).data("todoId")));
 
     if (todoIds.length > htmlTodoIds.length) {
         const newTodoItem = todo.filter((element) => htmlTodoIds.indexOf(element.id) === -1);
@@ -98,7 +98,7 @@ const updateHTMLTodo = (todo) => {
     }
 
     if (todoIds.length < htmlTodoIds.length) {
-        liList.filter((element) => todoIds.indexOf(Number(element.dataset.todoId)) === -1)
+        liList.filter((element) => todoIds.indexOf(Number($(element).data("todoId"))) === -1)
             .forEach((element) => element.remove());
     }
 };
@@ -106,29 +106,27 @@ const updateHTMLTodo = (todo) => {
 $(".js--form").submit((event) => {
     event.preventDefault();
 
-    const input = event.target.querySelector(".form__label > .form__input");
-
+    const input = $(event.target).find(".form__label > .form__input");
     if (input !== undefined) {
         const lastElementId = todo.length > 0 ? todo[todo.length - 1].id + 1 : 1;
-        todo.push({id: lastElementId, text: input.value, done: false});
+        todo.push({id: lastElementId, text: input.val(), done: false});
         localStorage.setItem("todo", JSON.stringify(todo));
         updateHTMLTodo(todo);
     }
 });
 
-
 $(".js--todos-wrapper").click((event) => {
     if ($(event.target).hasClass("todo-item__delete")) {
-        console.log("dele")
-        const todoDeleteIndex = todo.findIndex((element) => element.id === Number(event.target.parentElement.dataset.todoId));
+        const todoDeleteIndex = todo.findIndex((element) => element.id === Number($(event.target).parent().data("todoId")));
         todo.splice(todoDeleteIndex, 1);
         localStorage.setItem("todo", JSON.stringify(todo));
         updateHTMLTodo(todo);
     }
 
     if (event.target.tagName === "INPUT") {
-        const elementStateIndex = todo.findIndex((element) => element.id === Number(event.target.parentElement.dataset.todoId));
-        const elementState = todo.find((element) => element.id === Number(event.target.parentElement.dataset.todoId));
+        const elementStateIndex = todo.findIndex((element) => element.id === Number($(event.target).parent().data("todoId")));
+        const elementState = todo.find((element) => element.id === Number($(event.target).parent().data("todoId")));
+
         elementState.done = event.target.checked;
         todo.splice(elementStateIndex, 1, elementState);
         localStorage.setItem("todo", JSON.stringify(todo));
