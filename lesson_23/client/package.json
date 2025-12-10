@@ -1,0 +1,22 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "@rollup/plugin-inject": "^5.0.5",
+    "sass-embedded": "^1.95.1",
+    "vite": "^7.2.7",
+    "vite-plugin-ruby": "^5.1.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "jquery": "^3.7.1"
+  }
+}
