@@ -1,6 +1,8 @@
 export class TodoAPI {
+    #API_URL = "http://localhost:8080/api";
+
     createTodo = async (data) => {
-        const response = await fetch('http://localhost:8080/api/todo/create', {
+        const response = await fetch(`${this.#API_URL}/todo/create`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -11,12 +13,12 @@ export class TodoAPI {
     }
 
     getAllTodos = async () => {
-        const response = await fetch('http://localhost:8080/api/todos');
+        const response = await fetch(`${this.#API_URL}/todos`);
         return await response.json();
     }
 
     updateTodo = async (data) => {
-        const response = await fetch('http://localhost:8080/api/todo/update', {
+        const response = await fetch(`${this.#API_URL}/todo/update`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
@@ -27,7 +29,7 @@ export class TodoAPI {
     }
 
     deleteTodo = async (id) => {
-        const response = await fetch(`http://localhost:8080/api/todo/delete?id=${id}`, {
+        const response = await fetch(`${this.#API_URL}/todo/delete?id=${id}`, {
             method: 'DELETE'
         })
         return await response.json();

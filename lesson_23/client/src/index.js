@@ -26,7 +26,8 @@ $(".js--form").submit(async (event) => {
     if (input !== undefined) {
         await todoApi.createTodo({text: $(input).val()});
 
-        pageElement.updateHTMLTodo(await todoApi.getAllTodos());
+        const todos = await todoApi.getAllTodos();
+        pageElement.updateHTMLTodo(todos);
     }
 });
 
@@ -35,7 +36,8 @@ $(".js--todos-wrapper").click(async (event) => {
         const todoId = $(event.target).parent().data("todoId");
         await todoApi.deleteTodo(todoId);
 
-        pageElement.updateHTMLTodo(await todoApi.getAllTodos());
+        const todos = await todoApi.getAllTodos();
+        pageElement.updateHTMLTodo(todos);
     }
 
     if (event.target.tagName === "INPUT") {
