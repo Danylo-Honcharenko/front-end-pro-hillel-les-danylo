@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import {theme, ThemeContext} from "../../themeContext.js";
+import {theme, ThemeContext} from "../themeContext.js";
 import {NavLink} from "react-router";
 
 const Header = () => {
