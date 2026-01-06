@@ -1,7 +1,7 @@
 import './App.css'
 import Counter from "./components/Counter.jsx";
 import {useDispatch} from "react-redux";
-import {decrement, increment} from "./counterSlice.js";
+import {decrement, increment} from "./redux/counterSlice.js";
 
 function App() {
 
