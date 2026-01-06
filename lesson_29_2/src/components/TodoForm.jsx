@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Form} from "react-bootstrap";
 import {useFormik} from "formik";
 import {useDispatch} from "react-redux";
-import {addTodo} from "../todoSlice.js";
+import {addTodo} from "../redux/todoSlice.js";
 
 const TodoForm = () => {
 
