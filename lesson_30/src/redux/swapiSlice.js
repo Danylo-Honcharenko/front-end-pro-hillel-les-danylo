@@ -22,8 +22,8 @@ export const {setData, setLoading} = swapiSlice.actions;
 export default swapiSlice.reducer;
 
 export const fetchData = (url) => async (dispatch) => {
+    dispatch(setLoading(true));
     try {
-        dispatch(setLoading(true));
         const response = await fetch(`https://www.swapi.tech/api/${url}`);
         const data = await response.json();
         dispatch(setData(data));
