@@ -1,4 +1,4 @@
-import {render, screen, fireEvent, waitFor} from "@testing-library/react";
+import {render, screen, fireEvent, act} from "@testing-library/react";
 import App from "../App.jsx";
 
 describe('App', () => {
@@ -11,7 +11,7 @@ describe('App', () => {
     test('test input string', async () => {
         const input = screen.getByPlaceholderText("Задача");
 
-        await waitFor(() => {
+        await act(async () => {
             fireEvent.change(input, { target: { value: "test" } });
         })
 
@@ -20,7 +20,7 @@ describe('App', () => {
 
     test('test input numbers', async () => {
         const input = screen.getByPlaceholderText("Задача");
-        await waitFor(() => {
+        await act(async () => {
             fireEvent.change(input, { target: { value: 1234 } });
         })
         expect(input.value).toBe("1234");
@@ -28,7 +28,7 @@ describe('App', () => {
 
     test('test button add', async () => {
         const addButton = screen.getByText("Додати");
-        await waitFor(() => {
+        await act(async () => {
             addButton.click();
         })
         expect(screen.getByText("Обов'язкове поле!")).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe('App', () => {
         const input = screen.getByPlaceholderText("Задача");
         const addButton = screen.getByText("Додати");
 
-        await waitFor(() => {
+        await act(async () => {
             fireEvent.change(input, { target: { value: "test1234" } });
             addButton.click();
         })
@@ -50,7 +50,7 @@ describe('App', () => {
         const input = screen.getByPlaceholderText("Задача");
         const addButton = screen.getByText("Додати");
 
-        await waitFor(() => {
+        await act(async () => {
             fireEvent.change(input, { target: { value: "test" } });
             addButton.click();
         })
